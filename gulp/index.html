@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/reset.css">
+</head>
+<body ng-app="myApp">
+	<div class="wrap">
+		<header class="header">
+			<i class="fa fa-angle-left left"></i>
+			<h1>美食</h1>
+		</header>
+		<nav class="nav">
+			<span ui-sref="food">美食</span>
+			<span ui-sref="order">排序</span>
+			<span ui-sref="filter">筛选</span>
+		</nav>
+	    <section class="main" ui-view>
+	    	
+	    </section>
+	</div>
+</body>
+</html>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.js"></script>
+
+<script>
+	var app=angular.module("myApp",["ui.router"]);
+	app.config(function($stateProvider,$urlRouterProvider){
+          $stateProvider
+               .state("food",{
+               	   url:"/",
+               	   templateUrl:"pages/food.html",
+               	   controller:"myCtrl"
+               })
+               .state("order",{
+               	   url:"/order",
+               	   template:"这是排序页"
+               })
+               .state("filter",{
+               	   url:"/filter",
+               	   template:"过滤页"
+               })
+	});
+	app.controller("myCtrl",function($scope,$http){
+           $http.get("restaurants.json").then(function(data){
+                  $scope.data=data.data;
+                  console.log(data.data);
+           })
+	})
+</script>

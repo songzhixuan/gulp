@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="./css/food.css">
+</head>
+<body ng-app="">
+	<dl ng-repeat="x in data" class="item">
+		<dt><img ng-src=""></dt>
+		<dd>
+			<p><b>{{x.name}}</b><span><em ng-repeat="j in x.supports">{{j.icon_name}}</em></span></p>
+			<p><span><img ng-src="{{x.recommend.image_path}}"><em>{{x.rating}}</em><i>月售{{x.recent_order_num}}单</i></span><span><em>{{x.supports[2].name}}</em><em>{{x.delivery_mode.text}}</em></span></p>
+			<p><span><em>￥{{x.float_minimum_order_amount}}起送 /</em><em>{{x.piecewise_agent_fee.description}}</em></span><span><em>{{x.distance}}m /</em><em>{{x.latitude |number:0}}分钟</em></span></p>
+		</dd>
+	</dl>
+</body>
+</html>
